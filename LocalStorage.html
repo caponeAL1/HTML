@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+
+<html>
+    
+<head>
+
+    <title>Form and Table Example</title>
+
+    <style>
+
+        table {
+
+            border-collapse: collapse;
+
+            width: 100%;
+
+        }
+
+        th, td {
+
+            border: 1px solid #dddddd;
+
+            text-align: left;
+
+            padding: 8px;
+
+        }
+
+        tr:nth-child(even) {
+
+            background-color: #f2f2f2;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <h1>Enter Your Information</h1>
+
+    <form id="dataForm">
+
+        <label for="firstName">First Name:</label>
+
+        <input type="text" id="firstName" name="firstName" required><br><br>
+
+         
+
+        <label for="lastName">Last Name:</label>
+
+        <input type="text" id="lastName" name="lastName" required><br><br>
+
+ 
+
+        <label for="address">Address:</label>
+
+        <input type="text" id="address" name="address" required><br><br>
+
+ 
+
+        <label for="mobileNumber">Mobile Number:</label>
+
+        <input type="tel" id="mobileNumber" name="mobileNumber" required><br><br>
+
+ 
+
+        <label for="email">Email:</label>
+
+        <input type="email" id="email" name="email" required><br><br>
+
+        <fieldset>
+        
+        select Gender<br><br>
+
+        <input type="radio" name="Gender" value="M"/>Male<br><br>
+        
+        <input type="radio" name="Gender" value="F"/>Female<br><br>
+
+        </fieldset>
+
+        
+        
+        <fieldset>
+
+        Hobbies<br><br>
+        
+        <input type="checkbox" name="hobbies" value="cricket" />cricket<br><br>
+        
+        <input type="checkbox" name="hobbies" value="Tennis"/> Music<br><br>
+         
+        <input type="checkbox" name="hobbies" value="BasketBall"/> BasketBall<br><br>
+         
+        </fieldset>
+
+    </form>
+
+ 
+
+ 
+
+ 
+
+    <button onclick="addData()">Add Data</button>
+
+    <button onclick="createTable()">Create Table</button>
+
+ 
+
+ 
+
+ 
+
+    <h2>Entered Data</h2>
+
+    <table id="dataTable">
+
+        <tr>
+
+            <th>First Name</th>
+
+            <th>Last Name</th>
+
+            <th>Address</th>
+
+            <th>Mobile Number</th>
+
+            <th>Email</th>
+
+        </tr>
+
+    </table>
+
+ 
+
+ 
+
+ 
+
+    <script>
+
+        var data = [];
+
+ 
+
+ 
+
+ 
+
+        function addData() {
+            var i=document.forms[0].firstName.value;
+            var j=document.forms[0].lastName.value;
+            var k=document.forms[0].address.value;
+            var l=document.forms[0].mobileNumber.value;
+            var m=document.forms[0].email.value
+            console.log(i +"\t\t" +j+"\t\t" +k+"\t\t"+l+"\t\t"+m);
+            sessionStorage.firstName=i;  
+            sessionStorage.lastName=j;
+            sessionStorage.address=k ;
+            sessionStorage.mobileNumber=l ;
+            sessionStorage.email=m;
+
+            var formData = {
+
+                firstName: document.getElementById("firstName").value,
+
+                lastName: document.getElementById("lastName").value,
+
+                address: document.getElementById("address").value,
+
+                mobileNumber: document.getElementById("mobileNumber").value,
+
+                email: document.getElementById("email").value,
+
+            };
+
+            data.push(formData);
+
+            document.getElementById("dataForm").reset();
+
+        }
+
+ 
+
+ 
+
+ 
+
+        function createTable() {
+
+            var table = document.getElementById("dataTable");
+
+            table.innerHTML = '<tr><th>First Name</th><th>Last Name</th><th>Address</th><th>Mobile Number</th><th>Email</th></tr>';
+
+            for (var i = 0; i < data.length; i++) {
+
+                var row = table.insertRow(-1);
+
+                var cell1 = row.insertCell(0);
+
+                var cell2 = row.insertCell(1);
+
+                var cell3 = row.insertCell(2);
+
+                var cell4 = row.insertCell(3);
+
+                var cell5 = row.insertCell(4);
+
+                cell1.innerHTML = data[i].firstName;
+
+                cell2.innerHTML = data[i].lastName;
+
+                cell3.innerHTML = data[i].address;
+
+                cell4.innerHTML = data[i].mobileNumber;
+
+                cell5.innerHTML = data[i].email;
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>
+
+ 

@@ -1,0 +1,119 @@
+<link rel="StyleSheet" href="Untitled-1.css" />
+    <b> User information</b>
+    <script>
+ 
+         function CheckFirstName(){
+
+            var fname=document.forms[0].FirstName.value;
+
+            if(fname == ""){
+
+               var nerror=document.getElementById("nameerror");
+
+               nerror.style.fontWeight="bold";
+
+               nerror.style.fontStyle="italic";
+
+               nerror.innerHTML="First Name is mandatory";
+                //fname.focus();
+
+            }
+
+        }
+
+        function CheckAge(){
+            var Age=document.forms[0].Age.value;
+            if(Age == "")
+            {
+                var aerror=document.getElementById("Ageerror");
+
+                aerror.style.fontWeight="bold";
+
+                aerror.style.fontStyle="italic";
+
+                aerror.innerHTML="Age is mandatory";
+            }
+        }
+        function checkProjectDate() {
+
+          var jDate = document.forms[0].joindate.value;
+
+        var pDate = document.forms[0].projectdate.value;
+
+
+
+         if (jDate == "") {
+
+          var dateError = document.getElementById("dateerror");
+
+          dateError.style.fontWeight = "bold";
+
+          dateError.style.fontStyle = "bold";
+
+          dateError.innerHTML = "Date should be within the specified range of the start of the company";
+
+         } else if (pDate < jDate) {
+
+         var dateError = document.getElementById("dateError");
+
+          dateError.style.fontWeight = "bold";
+
+           dateError.style.fontStyle = "bold";
+
+         dateError.innerHTML = "Project date should be greater than the date of joining";
+
+        }
+
+    }  
+ function clearError()
+   {
+     document.getElementById("nameerror").innerHTML="";
+   }
+    function confirmReset()
+    {
+        var status=confirm("want to reset and lose the data?");
+        console.log(status);
+        return status;
+    }
+
+    function enableSave()
+    {
+      var v=document.getElementsByName("saveStatus");
+       
+      var checkstate=v[0].checked;
+
+      document.getElementById("save").disabled=!v[0].checked;
+    
+    }
+</script>
+
+<form action="#" novalidate onreset="return confirmReset()">
+    <label>EMPLOYEE ID</label><input type="number" name="employee id" min="1" max="200"/><br>
+    <label for="fname">FirstName</label><input type="text"
+    name="FirstName" placeholder="Enter your Name" required minlength="5" maxlength="7" onblur="CheckFirstName()"
+    onfocus="clearError()"/><br><br>
+    <label id="nameerror" style="color:brown"></label>
+    <label>Age</label><input type="number" min="18" max="60" name="Age" onblur="CheckAge()"/><br>
+    <label id="Ageerror" style="color:brown"></label>
+    <label> Date of Joining</label><input type="date" name="joindate"/>
+    <label id="dateerror" style="color:brown"></label><br><br><br>
+    <label>Project join date</label><input type="date" name="projectdate" 
+    onblur="checkProjectDate()"/> <br><br>
+<label id="dateError" style="color:brown"></label><br><br>
+
+<label>Upload your resume</label><input type="file" name="resume" accept="audio/*,application/pdf" /><br>
+<label> your email</label><input type="email" name="email-ID" minlength="6"/><br><br>
+<label for="volume">Preferred Volume</label><input type="range" min="10" max="10000" style="width:400" 
+oninput="updateVolume()" name="volume"/>
+<input type="text" name="volumeLevel" style="width:60px;height: 15;" readonly/><br><br>
+<b name="volumeLevel"></b><br><br>
+<input type="checkbox" name="saveStatus" onclick="enableSave()"/> Agree to Terms & conditions<br>
+<input type="submit" value="save" id="save" disabled/>&nbsp;&nbsp;
+<input type="reset" value="reset"/><br><br>
+</form>
+<script>
+    function updateVolume()
+    {
+        document.forms[0].volumeLevel.value=document.forms[0].volume.value+"%";
+    }
+</script>

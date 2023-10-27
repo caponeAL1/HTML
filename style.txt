@@ -1,0 +1,9 @@
+<style>
+<htmltagName>
+{
+ attributeName: value,
+             .
+             .
+ attributeNameN:valueN
+</style>
+}
